@@ -1,0 +1,63 @@
+import { connect } from 'react-redux';
+import {withRouter} from "react-router-dom";
+import actions from '../actions';
+import { store } from '../index'
+import TasksList from '../TasksList';
+
+const filteredTasks=(tasks, status, prioritet)=>{
+    if ((status=="0")&&(prioritet=="0")) {
+      return tasks;
+    } else {
+      if (status=="0") {
+        return tasks.filter((task)=>{return task.prioritet==prioritet});
+      } else {
+        if (prioritet=="0") {
+          return tasks.filter((task)=>{return task.status==status});
+          } else {
+            return tasks.filter((task)=>{return task.status==status}).filter((fstask)=>{return fstask.prioritet==prioritet});
+          }
+        }
+    }
+
+}
+
+const mapStateToProps = (state) => {
+    return {user: state.user, 
+    tasks: filteredTasks(state.tasks, state.filterStatus, state.filterPrioritet), 
+    ifEnter: state.ifEnter, 
+    filterStatus: state.filterStatus,
+    filterPrioritet: state.filterPrioritet,
+    sortColumn: state.sortColumn,
+    sortUp: state.sortUp,
+    loaded: state.loaded,
+    prevTasks: state.prevTasks
+  };
+     
+  }
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      onBtnClick: ()=>{
+        dispatch(actions.enter());
+      },
+      sortId: ()=>{
+        dispatch(actions.sortByID());
+      },
+      filterByStatus(status){
+        dispatch(actions.filterByStatus(status));
+      },
+      filterByPrioritet(prioritet){
+        dispatch(actions.filterByPrioritet(prioritet));
+      },
+      sorting(sort){
+        dispatch(actions.sorting(sort));
+      },
+      detailTask(task){
+        dispatch(actions.getTaskDetail(task));
+      },
+      getTasks(){
+        dispatch(actions.getTasks());
+      }
+    }
+  }
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TasksList));

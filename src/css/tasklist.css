@@ -1,0 +1,33 @@
+#tasklist{
+    margin: auto 20px;
+}
+#tasklist>h1{
+    text-align: center;
+    margin: 20px auto;
+}
+table>caption{
+    font-size: 1.5em;
+}
+table{
+    font-size: 1.3em;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+td{
+    padding: 3px 10px;
+    border: darkgray 1px solid;
+}
+tr:hover{
+    cursor: pointer;
+    background-color: darkgrey;
+    
+}
+span{
+    font-size: 20px;
+}
+select{
+    font-size: 16px;
+}
+th[data-name='title'], th[data-name='date']{
+    cursor: default;
+}
