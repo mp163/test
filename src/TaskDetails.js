@@ -5,10 +5,6 @@ import styles from './css/taskdetail.css'
 class TaskDetails extends React.Component {
     constructor (props){
         super(props)
-        this.setSelectStatus=this.setSelectStatus.bind(this)
-        this.setSelectPrioritet=this.setSelectPrioritet.bind(this)
-        this.onChangeStatus=this.onChangeStatus.bind(this)
-        this.onClickHandler=this.onClickHandler.bind(this)
     }
 
     componentWillMount(){
@@ -46,7 +42,7 @@ class TaskDetails extends React.Component {
                 <h2>Время выполнения: {this.props.taskDetail.timeToDo}</h2>
                 <h2>Запланированное время: {this.props.taskDetail.timePlan}</h2>
                 <span>Статус выполнения задачи: </span>
-                    <select id="selectStatus" onChange={this.onChangeStatus}>
+                    <select id="selectStatus" onChange={(e)=>this.onChangeStatus(e)}>
                         <option key="1" value="1" selected={this.setSelectStatus("1")}>Открытая</option>
                         <option key="2" value="2" selected={this.setSelectStatus("2")}>В работе</option>
                         <option key="3" value="3" selected={this.setSelectStatus("3")}>Отложенная</option>
@@ -54,12 +50,12 @@ class TaskDetails extends React.Component {
                     </select>
                 <h2>Дата: {this.props.taskDetail.date}</h2>
                 <span>Приоритет выполнения задачи: </span>
-                    <select id="selectPrioritet" onChange={this.onChangeStatus}>
+                    <select id="selectPrioritet" onChange={(e)=>this.onChangeStatus(e)}>
                         <option key="1" value="1" selected={this.setSelectPrioritet("1")}>Высокий</option>
                         <option key="2" value="2" selected={this.setSelectPrioritet("2")}>Обычный</option>
                         <option key="3" value="3" selected={this.setSelectPrioritet("3")}>Низкий</option>
                     </select><br/>
-                <button onClick={this.onClickHandler}>Сохранить изменения и вернуться к списку задач</button>
+                <button onClick={(e)=>this.onClickHandler(e)}>Сохранить изменения и вернуться к списку задач</button>
             </div>
         )
         return <h1></h1>

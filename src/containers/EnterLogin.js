@@ -1,17 +1,14 @@
-import { connect } from 'react-redux';
-import actions from '../actions';
-import Login from '../Login';
+import { connect } from 'react-redux'
+import actions from '../actions'
+import Login from '../Login'
 
 
 const mapStateToProps = (state) => {
     return {...state}
   }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-      onLogIn: (text)=>{
-        dispatch(actions.enter(text));
-      }
-    }
+ const mapDispatchToProps = {
+    onLogIn: actions.enter
   }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

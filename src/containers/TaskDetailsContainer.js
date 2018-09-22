@@ -8,17 +8,12 @@ const mapStateToProps = (state) => {
       tasks: state.tasks,
       ifEnter: state.ifEnter,
       taskDetail: state.taskDetail
-  };
-     
+    };
   }
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      saveChanges: (changes)=>{
-        dispatch(actions.saveChanges(changes));
-      },
-      returnToList: (text)=>{
-        dispatch(actions.returnToList(text));
-      }
-    }
+
+const mapDispatchToProps = {
+      saveChanges: actions.saveChanges,
+      returnToList: actions.returnToList
   }
+
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TaskDetails));

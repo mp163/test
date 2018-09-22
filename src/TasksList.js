@@ -6,20 +6,20 @@ import {UPDATE_INTERVAL} from './data/options'
 class TasksList extends React.Component {
     constructor(props){
         super(props);
-        this.sortBy=this.sortBy.bind(this);
-        this.filterByStatus=this.filterByStatus.bind(this);
-        this.filterByPrioritet=this.filterByPrioritet.bind(this);
-        this.onClickTH=this.onClickTH.bind(this);
+
+    }
+
+    componentWillMount(){
+        this.setState({
+            sortUp: {id: 0, status: 0, prioritet: 0}
+        });
     }
 
     componentDidMount(){
         if ((!this.props.loaded)&&(this.props.ifEnter)){
-            setInterval(()=>{this.props.getTasks(); console.log("111")}, UPDATE_INTERVAL*60000);
-            
+            setInterval(()=>this.props.getTasks(), UPDATE_INTERVAL*60000);
             this.props.getTasks();}
-        
         if (!this.props.ifEnter) this.props.history.push('/');
-        
     }
 
     sortBy(e){
@@ -34,7 +34,28 @@ class TasksList extends React.Component {
     }
 
     onClickTH(e){
-        this.props.sorting(e.target.getAttribute('data-name'));
+        
+
+        let sortUpArray=this.state.sortUp;
+           
+        for (let item in sortUpArray) {
+            if (item==e.target.getAttribute('data-name')){
+                switch (sortUpArray[item]) {
+                case 0:
+                    sortUpArray[item]=-1;
+                    break;
+                case 1:
+                    sortUpArray[item]=-1;
+                    break;
+                case -1:
+                    sortUpArray[item]=1;
+                    break;
+                }
+            } else sortUpArray[item]=0;
+        };
+        this.setState({sortUp: sortUpArray});
+
+        this.props.sorting({name: e.target.getAttribute('data-name'), flag: this.state.sortUp[e.target.getAttribute('data-name')]});
     }
 
     render(){
@@ -44,7 +65,7 @@ class TasksList extends React.Component {
                     <h1>Вы вошли как {this.props.user.name} {this.props.user.surename}</h1>
                     <span>Фильтровать задачи по </span>
                     <span>статусу: </span>
-                    <select onChange={this.filterByStatus}>статусу:
+                    <select onChange={(e)=>this.filterByStatus(e)}>
                         <option key="0" value="0">Все</option>
                         <option key="1" value="1">Открытые</option>
                         <option key="2" value="2">В работе</option>
@@ -52,8 +73,8 @@ class TasksList extends React.Component {
                         <option key="4" value="4">Закрытые</option>
                     </select>
                     
-                    <span> приоритету: </span>
-                    <select onChange={this.filterByPrioritet}>
+                    <span> по приоритету: </span>
+                    <select onChange={(e)=>this.filterByPrioritet(e)}>
                         <option key="0" value="0">Все</option>
                         <option key="1" value="1">Высокий</option>
                         <option key="2" value="2">Обычный</option>
@@ -63,26 +84,23 @@ class TasksList extends React.Component {
                         <caption>Список задач</caption>
                         <thead>
                         <tr>
-                            <th data-name='id' onClick={this.onClickTH}>ID
-                            <i className={(this.props.sortUp.id===1) ? "fa fa-sort-down" : ((this.props.sortUp.id===0) ? "fa fa-sort" : "fa fa-sort-up")} aria-hidden="true"></i>
+                            <th data-name='id' onClick={(e)=>this.onClickTH(e)}>ID
+                            <i className={(this.state.sortUp.id===1) ? "fa fa-sort-down" : ((this.state.sortUp.id===0) ? "fa fa-sort" : "fa fa-sort-up")} aria-hidden="true"></i>
                             </th>
                             <th data-name='title'>Задание</th>
                             <th data-name='date'>Дата</th>
-                            <th data-name='status' onClick={this.onClickTH}>Статус
-                            <i className={(this.props.sortUp.status===1) ? "fa fa-sort-down" : ((this.props.sortUp.status===0) ? "fa fa-sort" : "fa fa-sort-up")} aria-hidden="true"></i>
+                            <th data-name='status' onClick={(e)=>this.onClickTH(e)}>Статус
+                            <i className={(this.state.sortUp.status===1) ? "fa fa-sort-down" : ((this.state.sortUp.status===0) ? "fa fa-sort" : "fa fa-sort-up")} aria-hidden="true"></i>
                             </th>
-                            <th data-name='prioritet' onClick={this.onClickTH}>Приоритет
-                            <i onClick={this.onClickTH} className={(this.props.sortUp.prioritet===1) ? "fa fa-sort-down" : ((this.props.sortUp.prioritet===0) ? "fa fa-sort" : "fa fa-sort-up")} aria-hidden="true"></i>
+                            <th data-name='prioritet' onClick={(e)=>this.onClickTH(e)}>Приоритет
+                            <i onClick={(e)=>this.onClickTH(e)} className={(this.state.sortUp.prioritet===1) ? "fa fa-sort-down" : ((this.state.sortUp.prioritet===0) ? "fa fa-sort" : "fa fa-sort-up")} aria-hidden="true"></i>
                             </th>
                         </tr> 
                         </thead> 
-                        <tbody onClick={this.sortBy}>
-
+                        <tbody onClick={(e)=>this.sortBy(e)}>
                             {this.props.tasks.map((task)=>{return <TableRows task={task} key={task.id} />})}
-                           
                         </tbody>
                     </table>
-                    
                 </div>
             )
             return <h1>Error</h1>
