@@ -2,44 +2,44 @@ import React from 'react';
 
 const statusName=(status)=>{
         switch (status) {
-            case "1":
-                return "Открыта";
+            case '1':
+                return 'Открыта';
                 break;
         
-            case "2":
-                return "В работе"
+            case '2':
+                return 'В работе'
                 break;
             
-            case "3":
-                return "Отложена"
+            case '3':
+                return 'Отложена'
                 break;
 
-            case "4":
-                return "Закрыта"
+            case '4':
+                return 'Закрыта'
                 break;
                 
             default:
-                return "Открыта"
+                return 'Открыта'
                 break;
         }
     }
 
 const prioritetName=(prioritet)=>{
         switch (prioritet) {
-            case "1":
-                return "Высокий"
+            case '1':
+                return 'Высокий'
                 break;
         
-            case "2":
-                return "Обычный"
+            case '2':
+                return 'Обычный'
                 break;
             
-            case "3":
-                return "Низкий"
+            case '3':
+                return 'Низкий'
                 break;
             
             default:
-                return "Обычный"
+                return 'Обычный'
                 break;
         }
     }
