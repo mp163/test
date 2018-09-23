@@ -9,11 +9,9 @@ const initialState={
     filterPrioritet: '0',
     user: {},
     loaded: false
-//    sortUp: {id: 0, title: 0, date: 0, status: 0, prioritet: 0}
 }
 
 const reducer=(state=initialState, action)=>{
-    
     switch (action.type){
         case 'GET_TASKS_FROM_FILE':
             return {...state, loaded: true, tasks: action.data.filter((task)=>task.who==state.user.uid)}

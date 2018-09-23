@@ -1,4 +1,4 @@
-#login {
+.login {
     margin: 10vh auto;
     font-size: 16px;
     background-color: dodgerblue;
@@ -15,24 +15,26 @@
 }
 h1{
     margin: 0 auto 10px;
-   
 }
 input{
     font-size: 16px;
     padding: 5px 5px;
     margin: 3px 0;
 }
-#login>button{
+button{
+    border-radius: 3px;
+    border: none;
+    background-color: darkslateblue; 
+    padding: 5px 10px;   
+}
+.login>button{
     height: 40px;
     width: 70px;
     flex-basis: 30px;
     flex-shrink: 0;
     flex-grow: 0;
-    border-radius: 3px;
-    border: none;
-    background-color: darkslateblue;
 }
-#login>button:hover{
+button:hover{
     background-color: darkturquoise;
 }
 label{

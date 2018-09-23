@@ -34,8 +34,6 @@ class TasksList extends React.Component {
     }
 
     onClickTH(e){
-        
-
         let sortUpArray=this.state.sortUp;
            
         for (let item in sortUpArray) {
@@ -61,39 +59,39 @@ class TasksList extends React.Component {
     render(){
         if (this.props.ifEnter)
             return (
-                <div id='tasklist'>
+                <div className='tasklist'>
                     <h1>Вы вошли как {this.props.user.name} {this.props.user.surename}</h1>
                     <span>Фильтровать задачи по </span>
                     <span>статусу: </span>
                     <select onChange={(e)=>this.filterByStatus(e)}>
-                        <option key="0" value="0">Все</option>
-                        <option key="1" value="1">Открытые</option>
-                        <option key="2" value="2">В работе</option>
-                        <option key="3" value="3">Отложенные</option>
-                        <option key="4" value="4">Закрытые</option>
+                        <option key='0' value='0'>Все</option>
+                        <option key='1' value='1'>Открытые</option>
+                        <option key='2' value='2'>В работе</option>
+                        <option key='3' value='3'>Отложенные</option>
+                        <option key='4' value='4'>Закрытые</option>
                     </select>
                     
                     <span> по приоритету: </span>
                     <select onChange={(e)=>this.filterByPrioritet(e)}>
-                        <option key="0" value="0">Все</option>
-                        <option key="1" value="1">Высокий</option>
-                        <option key="2" value="2">Обычный</option>
-                        <option key="3" value="3">Низкий</option>
+                        <option key='0' value='0'>Все</option>
+                        <option key='1' value='1'>Высокий</option>
+                        <option key='2' value='2'>Обычный</option>
+                        <option key='3' value='3'>Низкий</option>
                     </select>
                     <table>
                         <caption>Список задач</caption>
                         <thead>
                         <tr>
                             <th data-name='id' onClick={(e)=>this.onClickTH(e)}>ID
-                            <i className={(this.state.sortUp.id===1) ? "fa fa-sort-down" : ((this.state.sortUp.id===0) ? "fa fa-sort" : "fa fa-sort-up")} aria-hidden="true"></i>
+                            <i className={(this.state.sortUp.id===1) ? 'fa fa-sort-down' : ((this.state.sortUp.id===0) ? 'fa fa-sort' : 'fa fa-sort-up')} aria-hidden='true'></i>
                             </th>
                             <th data-name='title'>Задание</th>
                             <th data-name='date'>Дата</th>
                             <th data-name='status' onClick={(e)=>this.onClickTH(e)}>Статус
-                            <i className={(this.state.sortUp.status===1) ? "fa fa-sort-down" : ((this.state.sortUp.status===0) ? "fa fa-sort" : "fa fa-sort-up")} aria-hidden="true"></i>
+                            <i className={(this.state.sortUp.status===1) ? 'fa fa-sort-down' : ((this.state.sortUp.status===0) ? 'fa fa-sort' : 'fa fa-sort-up')} aria-hidden='true'></i>
                             </th>
                             <th data-name='prioritet' onClick={(e)=>this.onClickTH(e)}>Приоритет
-                            <i onClick={(e)=>this.onClickTH(e)} className={(this.state.sortUp.prioritet===1) ? "fa fa-sort-down" : ((this.state.sortUp.prioritet===0) ? "fa fa-sort" : "fa fa-sort-up")} aria-hidden="true"></i>
+                            <i onClick={(e)=>this.onClickTH(e)} className={(this.state.sortUp.prioritet===1) ? 'fa fa-sort-down' : ((this.state.sortUp.prioritet===0) ? 'fa fa-sort' : 'fa fa-sort-up')} aria-hidden='true'></i>
                             </th>
                         </tr> 
                         </thead> 

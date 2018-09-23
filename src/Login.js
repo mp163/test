@@ -23,7 +23,7 @@ class Login extends React.Component{
 
     render(){
         return(
-            <div id='login'>
+            <div className='login'>
                 <h1>Авторизуйтесь</h1>
                 <label>Логин: </label><input type='text' id='log' /><br/>
                 <label>Пароль: </label><input type='password' id='pass' /><br/>

@@ -1,7 +1,13 @@
-#details{
+.details{
     margin: 10px 20px;
 }
-#details button{
+.details button{
     margin-top: 20px;
     font-size: 16px;
+}
+select:hover{
+    box-shadow: 3px 2px 6px  black ;
+}
+.details h1{
+    text-align: center;
 }
